@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BubbleFlow | Cafe Order System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="screen active">
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-title">BUBBLEFLOW v1.0</div>
+                <div class="terminal-controls">
+                    <div class="control close"></div>
+                    <div class="control minimize"></div>
+                    <div class="control maximize"></div>
+                </div>
+            </div>
+            <div class="terminal-text">
+                <span class="green-text">> INITIALIZING BUBBLE MATRIX...</span><br>
+                <span class="cyan-text">> LOADING CUSTOMER DATABASE...</span><br>
+                <span class="blue-text">> CONNECTING TO TELEGRAM API...</span><br>
+                <span class="purple-text">> READY.</span><br>
+                <span class="blink">> SYSTEM ONLINE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="registerScreen" class="screen">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="terminal-title">NEW USER REGISTRATION</div>
+            </div>
+            <div class="terminal-content">
+                <div class="ascii-art">
+<pre class="green-text">
+   ____        _     _ ______ _     
+  |  _ \      | |   | |  ____| |    
+  | |_) |_   _| |__ | | |__  | |    
+  |  _ <| | | | '_ \| |  __| | |    
+  | |_) | |_| | |_) | | |    | |____
+  |____/ \__,_|_.__/|_|_|    |______|
+</pre>
+                </div>
+                
+                <div class="form-group">
+                    <label class="cyan-text"><i class="fas fa-user"></i> FULL NAME</label>
+                    <input type="text" id="userName" class="hacker-input" placeholder="ENTER YOUR NAME" maxlength="20">
+                </div>
+                
+                <div class="form-group">
+                    <label class="cyan-text"><i class="fas fa-phone"></i> PHONE NUMBER</label>
+                    <input type="tel" id="userPhone" class="hacker-input" placeholder="+94XXXXXXXXX" pattern="[+][0-9]{11,15}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="cyan-text"><i class="fas fa-qrcode"></i> TABLE QR CODE</label>
+                    <div class="qr-scanner">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span class="small-text">SCAN TABLE QR OR ENTER MANUALLY</span>
+                        </div>
+                        <input type="text" id="tableCode" class="hacker-input" placeholder="TABLE-05">
+                    </div>
+                </div>
+                
+                <button id="registerBtn" class="hacker-btn pulse">
+                    <i class="fas fa-terminal"></i> GENERATE BUBBLE ID
+                </button>
+                
+                <div class="info-box">
+                    <p class="yellow-text"><i class="fas fa-info-circle"></i> Your bubble ID will be assigned automatically</p>
+                    <p class="small-text">System uses Telegram phone verification for security</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="mainScreen" class="screen">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="user-badge">
+                    <div class="bubble-small" id="userBubble">A1</div>
+                    <div class="user-info">
+                        <span class="username" id="displayName">ALI K.</span>
+                        <span class="user-code cyan-text">BUBBLE: <span id="userCode">A1</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <h1 class="logo">BUBBLE<span class="green-text">FLOW</span></h1>
+                <div class="table-display">
+                    <i class="fas fa-table"></i>
+                    <span id="currentTable">TABLE 05</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="icon-btn" id="galaxyViewBtn" title="Galaxy View">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <button class="icon-btn" id="groupBtn" title="Group Orders">
+                    <i class="fas fa-users"></i>
+                    <span class="badge" id="groupCount">3</span>
+                </button>
+                <button class="icon-btn" id="cartBtn" title="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Left Panel - Galaxy View -->
+            <div class="left-panel active" id="galaxyPanel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-star"></i> BUBBLE GALAXY</h2>
+                    <div class="controls">
+                        <button class="small-btn active" data-filter="all">ALL</button>
+                        <button class="small-btn" data-filter="active">ACTIVE</button>
+                        <button class="small-btn" data-filter="unpaid">UNPAID</button>
+                    </div>
+                </div>
+                
+                <div class="galaxy-container">
+                    <div class="bubble" data-id="A1" data-status="paid" data-group="table5">
+                        <div class="bubble-content">A1</div>
+                        <div class="bubble-ring"></div>
+                        <div class="bubble-glow"></div>
+                    </div>
+                    <div class="bubble" data-id="A2" data-status="working" data-group="table5">
+                        <div class="bubble-content">A2</div>
+                        <div class="bubble-ring"></div>
+                        <div class="bubble-glow"></div>
+                    </div>
+                    <div class="bubble" data-id="A3" data-status="unpaid" data-group="table5">
+                        <div class="bubble-content">A3</div>
+                        <div class="bubble-ring"></div>
+                        <div class="bubble-glow"></div>
+                    </div>
+                    <div class="bubble" data-id="A4" data-status="new" data-group="table5">
+                        <div class="bubble-content">A4</div>
+                        <div class="bubble-ring"></div>
+                        <div class="bubble-glow"></div>
+                    </div>
+                    <!-- More bubbles will be generated by JS -->
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="bubble-legend status-paid"></div>
+                        <span>PAID</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="bubble-legend status-working"></div>
+                        <span>PREPARING</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="bubble-legend status-unpaid"></div>
+                        <span>UNPAID</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="bubble-legend status-new"></div>
+                        <span>NEW ORDER</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Menu/Order -->
+            <div class="right-panel" id="menuPanel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-utensils"></i> QUANTUM MENU</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="SEARCH ITEM..." class="search-input">
+                    </div>
+                </div>
+                
+                <div class="categories">
+                    <button class="cat-btn active" data-category="all">ALL</button>
+                    <button class="cat-btn" data-category="coffee">COFFEE</button>
+                    <button class="cat-btn" data-category="tea">TEA</button>
+                    <button class="cat-btn" data-category="food">FOOD</button>
+                    <button class="cat-btn" data-category="dessert">DESSERT</button>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <!-- Menu items loaded from JSON -->
+                </div>
+            </div>
+
+            <!-- Center Panel - Order Details -->
+            <div class="center-panel" id="orderPanel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-code-branch"></i> ORDER MATRIX</h2>
+                    <button class="clear-btn" id="clearOrder">
+                        <i class="fas fa-trash"></i> CLEAR
+                    </button>
+                </div>
+                
+                <div class="order-section">
+                    <h3><i class="fas fa-user"></i> YOUR ORDER (A1)</h3>
+                    <div class="order-list" id="userOrderList">
+                        <!-- User's order items -->
+                    </div>
+                </div>
+                
+                <div class="order-section">
+                    <h3><i class="fas fa-users"></i> GROUP ORDERS</h3>
+                    <div class="group-selector">
+                        <button class="group-member active" data-user="A1">A1</button>
+                        <button class="group-member" data-user="A2">A2</button>
+                        <button class="group-member" data-user="A3">A3</button>
+                        <button class="group-member" data-user="A4">A4</button>
+                        <button class="add-member" id="addMemberBtn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="group-orders">
+                        <div class="group-order" data-user="A2">
+                            <div class="group-header">
+                                <span class="group-user">BUBBLE A2</span>
+                                <span class="group-status pending">PENDING</span>
+                            </div>
+                            <div class="group-items">
+                                <!-- A2's items -->
+                            </div>
+                        </div>
+                        <!-- Other group orders -->
+                    </div>
+                </div>
+                
+                <div class="order-total">
+                    <div class="total-row">
+                        <span>SUBTOTAL</span>
+                        <span class="amount" id="subtotal">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>TAX (10%)</span>
+                        <span class="amount" id="tax">$0.00</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>TOTAL</span>
+                        <span class="amount green-text" id="total">$0.00</span>
+                    </div>
+                    
+                    <div class="split-options">
+                        <h4><i class="fas fa-code-fork"></i> PAYMENT SPLIT</h4>
+                        <div class="split-buttons">
+                            <button class="split-btn" data-split="single">A1 PAYS ALL</button>
+                            <button class="split-btn" data-split="equal">SPLIT EQUALLY</button>
+                            <button class="split-btn" data-split="custom">CUSTOM SPLIT</button>
+                        </div>
+                    </div>
+                    
+                    <button class="order-btn" id="submitOrderBtn">
+                        <i class="fas fa-paper-plane"></i> LAUNCH ORDER
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Notification System -->
+        <div class="notification-container">
+            <div class="notification" id="notif1">
+                <div class="notif-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="notif-content">
+                    <div class="notif-title">SYSTEM: Order Confirmed</div>
+                    <div class="notif-message">Your bubble is now in preparation queue</div>
+                </div>
+                <div class="notif-close">&times;</div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div class="modal" id="paymentModal">
+            <div class="modal-content terminal-box">
+                <div class="modal-header">
+                    <h2><i class="fas fa-coins"></i> QUANTUM PAYMENT</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="payment-options">
+                        <div class="payment-option active" data-method="telegram">
+                            <i class="fab fa-telegram"></i>
+                            <span>Telegram Stars</span>
+                        </div>
+                        <div class="payment-option" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="payment-option" data-method="cash">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Cash</span>
+                        </div>
+                        <div class="payment-option" data-method="split">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Split Bill</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details">
+                        <div class="qr-payment">
+                            <div class="qr-code">
+                                <!-- QR Code would be generated here -->
+                                <div class="qr-placeholder-large">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>SCAN TO PAY</span>
+                                </div>
+                            </div>
+                            <div class="payment-info">
+                                <div class="amount-display">
+                                    <span class="label">AMOUNT:</span>
+                                    <span class="value green-text">$24.50</span>
+                                </div>
+                                <div class="timer">
+                                    <i class="fas fa-clock"></i>
+                                    <span>EXPIRES IN: <span class="countdown">05:00</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="confirm-btn">
+                        <i class="fas fa-check-circle"></i> CONFIRM PAYMENT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin View (Hidden by default) -->
+    <div id="adminView" class="screen">
+        <!-- Admin interface would go here -->
+    </div>
+
+    <script src="data.json"></script>
+    <script src="script.js"></script>
+</body>
+</html>
