@@ -1,1097 +1,929 @@
-<!DOCTYPE html>
+{
+  "verses": [
+    {
+      "id": 1,
+      "arabic": "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ",
+      "translation": "And say, 'Do [good] deeds, for Allah will see your deeds, and His Messenger and the believers as well.'",
+      "reference": "Quran 9:105",
+      "theme": "work"
+    },
+    {
+      "id": 2,
+      "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+      "translation": "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+      "reference": "Quran 13:11",
+      "theme": "change"
+    },
+    {
+      "id": 3,
+      "arabic": "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ",
+      "translation": "And cooperate in righteousness and piety, but do not cooperate in sin and aggression.",
+      "reference": "Quran 5:2",
+      "theme": "cooperation"
+    },
+    {
+      "id": 4,
+      "arabic": "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ",
+      "translation": "And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah.",
+      "reference": "Quran 62:10",
+      "theme": "sustenance"
+    },
+    {
+      "id": 5,
+      "arabic": "وَاللَّهُ فَضَّلَ بَعْضَكُمْ عَلَى بَعْضٍ فِي الرِّزْقِ",
+      "translation": "And Allah has favored some of you over others in provision.",
+      "reference": "Quran 16:71",
+      "theme": "provision"
+    }
+  ]
+}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BubbleFlow | Telegram Mini App</title>
-    <!-- Telegram Web App SDK -->
+    <title>Kanditheemu Project Assistant</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Share Tech Mono', 'Courier New', monospace;
-        }
-
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #11111f;
-            --bg-tertiary: #1a1a2e;
-            --cyan: #00ffff;
-            --green: #00ff88;
-            --blue: #0088ff;
-            --purple: #aa00ff;
-            --red: #ff0055;
-            --yellow: #ffff00;
-            --text: #ffffff;
-            --text-light: #a0a0c0;
-            --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.5);
-            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5);
-            --glow-blue: 0 0 20px rgba(0, 136, 255, 0.5);
-        }
-
-        body {
-            background: var(--bg-primary);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 136, 255, 0.05) 0%, transparent 50%);
-        }
-
-        /* Header */
-        .header {
-            background: var(--bg-secondary);
-            padding: 25px;
-            border-radius: 0 0 25px 25px;
-            text-align: center;
-            border-bottom: 2px solid var(--cyan);
-            box-shadow: var(--glow-cyan);
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            font-size: 3em;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--cyan), var(--blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: var(--text-light);
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-
-        /* Workflow Container */
-        .workflow-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Flow Navigation - BUBBLE STYLE */
-        .flow-nav {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-
-        .flow-title {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: var(--cyan);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
-            text-align: center;
-        }
-
-        .flow-step {
-            padding: 18px;
-            margin: 12px 0;
-            background: rgba(0, 255, 255, 0.05);
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flow-step:hover {
-            transform: translateX(10px);
-            background: rgba(0, 255, 255, 0.1);
-            border-left-color: var(--cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .flow-step.active {
-            background: rgba(0, 255, 255, 0.15);
-            border-left-color: var(--cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .step-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, var(--cyan), var(--blue));
-            color: var(--bg-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        /* BUBBLE ANIMATION */
-        .bubble-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Workflow Content */
-        .workflow-content {
-            background: var(--bg-secondary);
-            border-radius: 25px;
-            padding: 30px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .content-title {
-            font-size: 2em;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--cyan), var(--green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .content-subtitle {
-            color: var(--text-light);
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-
-        /* BUBBLE GALAXY VIEW */
-        .bubble-galaxy {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            min-height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bubble {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: all 0.5s;
-            animation: float 4s ease-in-out infinite;
-            box-shadow: 0 0 20px currentColor;
-        }
-
-        .bubble::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, currentColor, transparent);
-            opacity: 0.3;
-        }
-
-        .bubble.paid { color: var(--green); }
-        .bubble.working { color: var(--blue); }
-        .bubble.unpaid { color: var(--red); }
-        .bubble.new { color: var(--cyan); animation: pulse 2s infinite; }
-        .bubble.vip { color: var(--purple); }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        /* Menu Grid */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .menu-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .item-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .item-price {
-            color: var(--green);
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        /* Order Controls */
-        .order-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .qty-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-tertiary);
-            border: 2px solid var(--cyan);
-            color: var(--cyan);
-            border-radius: 50%;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .qty-btn:hover {
-            background: var(--cyan);
-            color: var(--bg-primary);
-        }
-
-        .qty-display {
-            font-size: 1.3em;
-            font-weight: bold;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        /* User Roles - BUBBLE STYLE */
-        .role-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .role-card {
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .role-card.customer { border-color: var(--cyan); }
-        .role-card.waiter { border-color: var(--blue); }
-        .role-card.manager { border-color: var(--green); }
-        .role-card.vip { border-color: var(--purple); }
-
-        .role-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .role-icon {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-        }
-
-        /* Status Indicators */
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .status-item {
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .status-item.paid { border-top: 4px solid var(--green); }
-        .status-item.working { border-top: 4px solid var(--blue); }
-        .status-item.unpaid { border-top: 4px solid var(--red); }
-        .status-item.pending { border-top: 4px solid var(--yellow); }
-
-        .status-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 15px 30px;
-            border-radius: 12px;
-            border: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--cyan), var(--blue));
-            color: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .btn-success {
-            background: linear-gradient(45deg, var(--green), #00cc66);
-            color: var(--bg-primary);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 40px;
-            justify-content: center;
-        }
-
-        /* Telegram Info */
-        .telegram-info {
-            background: rgba(0, 136, 255, 0.1);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 5px solid var(--blue);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .workflow-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .flow-nav {
-                position: static;
-                margin-bottom: 30px;
-            }
-            
-            .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo { font-size: 2.5em; }
-            .content-title { font-size: 1.8em; }
-            .role-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo bubble-float">🫧 BUBBLEFLOW</div>
-            <div class="subtitle">Telegram Mini App - Visual Ordering System</div>
-            <div style="margin-top: 15px; color: var(--cyan);">
-                Order with Bubbles | Real-time Tracking | Group Sharing
+        <!-- Header with Date & Project Info -->
+        <header class="header">
+            <div class="project-info">
+                <h1><i class="fas fa-road"></i> Kanditheemu Road Project</h1>
+                <p id="current-date">Loading date...</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Sh. Kanditheemu Island</p>
+            </div>
+        </header>
+
+        <!-- Daily Quran Reminder Section -->
+        <section class="quran-section" id="quran-section">
+            <div class="section-title">
+                <i class="fas fa-quran"></i> Today's Quran Reminder
+            </div>
+            <div class="verse-card">
+                <div class="verse-arabic" id="verse-arabic">وَأَنْ لَيْسَ لِلْإِنْسَانِ إِلَّا مَا سَعَى</div>
+                <div class="verse-translation" id="verse-translation">
+                    "And that there is not for man except that [good] for which he strives"
+                </div>
+                <div class="verse-reference" id="verse-reference">Quran 53:39</div>
+                <button class="btn-secondary" onclick="loadRandomVerse()">
+                    <i class="fas fa-sync"></i> New Verse
+                </button>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="actions-section">
+            <div class="section-title">
+                <i class="fas fa-tasks"></i> Daily Work Log
+            </div>
+            <div class="actions-grid">
+                <button class="action-btn" onclick="openForm('progress')">
+                    <i class="fas fa-hard-hat"></i>
+                    <span>Site Progress</span>
+                </button>
+                <button class="action-btn" onclick="openForm('materials')">
+                    <i class="fas fa-truck-loading"></i>
+                    <span>Material Delivery</span>
+                </button>
+                <button class="action-btn" onclick="openForm('issues')">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Report Issue</span>
+                </button>
+                <button class="action-btn" onclick="openCamera()">
+                    <i class="fas fa-camera"></i>
+                    <span>Site Photo</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Forms (Hidden by default) -->
+        <div id="forms-container">
+            <!-- Site Progress Form -->
+            <div class="form-card" id="progress-form" style="display: none;">
+                <h3><i class="fas fa-hard-hat"></i> Daily Site Progress</h3>
+                <div class="form-group">
+                    <label>Work Done Today</label>
+                    <textarea id="work-done" placeholder="E.g.: Laid 50m road base near market, installed 3 culverts..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Number of Workers</label>
+                    <input type="number" id="worker-count" placeholder="12">
+                </div>
+                <div class="form-group">
+                    <label>Weather Condition</label>
+                    <select id="weather">
+                        <option value="sunny">Sunny</option>
+                        <option value="partly-cloudy">Partly Cloudy</option>
+                        <option value="rainy">Rainy</option>
+                        <option value="windy">Windy</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn-cancel" onclick="closeForm('progress')">Cancel</button>
+                    <button class="btn-primary" onclick="saveProgress()">Save Log</button>
+                </div>
+            </div>
+
+            <!-- Material Delivery Form -->
+            <div class="form-card" id="materials-form" style="display: none;">
+                <h3><i class="fas fa-truck-loading"></i> Material Delivery</h3>
+                <div class="form-group">
+                    <label>Material Type</label>
+                    <select id="material-type">
+                        <option value="cement">Cement (50kg bags)</option>
+                        <option value="gravel">Gravel (tons)</option>
+                        <option value="sand">Sand (cubic meters)</option>
+                        <option value="pipes">Drainage Pipes</option>
+                        <option value="asphalt">Asphalt</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="material-qty" placeholder="e.g., 100">
+                </div>
+                <div class="form-group">
+                    <label>Supplier/Driver Name</label>
+                    <input type="text" id="supplier" placeholder="e.g., Hassan Construction">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn-cancel" onclick="closeForm('materials')">Cancel</button>
+                    <button class="btn-primary" onclick="saveMaterial()">Record Delivery</button>
+                </div>
+            </div>
+
+            <!-- Issue Report Form -->
+            <div class="form-card" id="issues-form" style="display: none;">
+                <h3><i class="fas fa-exclamation-triangle"></i> Report Issue</h3>
+                <div class="form-group">
+                    <label>Issue Type</label>
+                    <select id="issue-type">
+                        <option value="delay">Work Delay</option>
+                        <option value="material-shortage">Material Shortage</option>
+                        <option value="safety">Safety Concern</option>
+                        <option value="weather">Weather Problem</option>
+                        <option value="equipment">Equipment Failure</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="issue-desc" placeholder="Describe the issue in detail..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Urgency Level</label>
+                    <select id="urgency">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical - Needs Immediate Attention</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn-cancel" onclick="closeForm('issues')">Cancel</button>
+                    <button class="btn-primary" onclick="saveIssue()">Report Issue</button>
+                </div>
             </div>
         </div>
 
-        <div class="workflow-container">
-            <!-- Navigation -->
-            <div class="flow-nav">
-                <div class="flow-title">🔄 ORDER WORKFLOW</div>
-                <div class="flow-step active" onclick="showStep('dashboard')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">🫧</div>
-                        <div>Bubble Dashboard</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('menu')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">📋</div>
-                        <div>Quantum Menu</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('order')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">🛒</div>
-                        <div>Place Order</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('galaxy')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">🌌</div>
-                        <div>Bubble Galaxy</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('group')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">👥</div>
-                        <div>Group Orders</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('payment')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">💳</div>
-                        <div>Payment Split</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('tracking')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">📊</div>
-                        <div>Order Tracking</div>
-                    </div>
-                </div>
-                <div class="flow-step" onclick="showStep('telegram')">
-                    <div style="display: flex; align-items: center;">
-                        <div class="step-icon">🤖</div>
-                        <div>Telegram Setup</div>
-                    </div>
+        <!-- Reports Summary -->
+        <section class="reports-section">
+            <div class="section-title">
+                <i class="fas fa-clipboard-list"></i> Today's Entries
+            </div>
+            <div class="reports-list" id="reports-list">
+                <div class="empty-state">
+                    <i class="fas fa-clipboard"></i>
+                    <p>No entries yet today. Start logging your work!</p>
                 </div>
             </div>
+            <button class="btn-secondary" onclick="viewWeeklySummary()">
+                <i class="fas fa-chart-bar"></i> View Weekly Summary
+            </button>
+        </section>
 
-            <!-- Content Area -->
-            <div class="workflow-content" id="workflowContent">
-                <!-- Step 1: Dashboard -->
-                <div id="step-dashboard" class="step-content">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">🫧 BUBBLE DASHBOARD</div>
-                            <div class="content-subtitle">Your Visual Ordering Control Center</div>
-                        </div>
-                        <div style="color: var(--green); font-weight: bold; background: rgba(0, 255, 136, 0.1); padding: 10px 20px; border-radius: 20px;">
-                            🎯 LIVE: Bubble A1
-                        </div>
-                    </div>
-
-                    <!-- Status Grid -->
-                    <div class="status-grid">
-                        <div class="status-item paid">
-                            <div>✅ PAID</div>
-                            <div class="status-value">8</div>
-                            <div style="font-size: 0.9em;">Bubbles</div>
-                        </div>
-                        <div class="status-item working">
-                            <div>⚙️ PREPARING</div>
-                            <div class="status-value">3</div>
-                            <div style="font-size: 0.9em;">Bubbles</div>
-                        </div>
-                        <div class="status-item unpaid">
-                            <div>💳 UNPAID</div>
-                            <div class="status-value">2</div>
-                            <div style="font-size: 0.9em;">Bubbles</div>
-                        </div>
-                        <div class="status-item pending">
-                            <div>⏳ PENDING</div>
-                            <div class="status-value">5</div>
-                            <div style="font-size: 0.9em;">Bubbles</div>
-                        </div>
-                    </div>
-
-                    <!-- User Roles -->
-                    <div class="role-grid">
-                        <div class="role-card customer">
-                            <div class="role-icon">👤</div>
-                            <h3>Customer</h3>
-                            <p style="margin-top: 10px; opacity: 0.9;">Browse menu, place orders, track bubbles, split bills</p>
-                            <div style="margin-top: 15px; font-size: 0.9em;">
-                                <div>✓ View bubble status</div>
-                                <div>✓ Order items</div>
-                                <div>✓ Split bills</div>
-                                <div>✓ Track orders</div>
-                            </div>
-                        </div>
-                        <div class="role-card waiter">
-                            <div class="role-icon">👨‍🍳</div>
-                            <h3>Waiter/Staff</h3>
-                            <p style="margin-top: 10px; opacity: 0.9;">Confirm orders, update status, manage tables, process payments</p>
-                            <div style="margin-top: 15px; font-size: 0.9em;">
-                                <div>✓ View all bubbles</div>
-                                <div>✓ Update status</div>
-                                <div>✓ Confirm orders</div>
-                                <div>✓ Process payments</div>
-                            </div>
-                        </div>
-                        <div class="role-card manager">
-                            <div class="role-icon">👔</div>
-                            <h3>Manager</h3>
-                            <p style="margin-top: 10px; opacity: 0.9;">Analytics, menu management, staff control, revenue tracking</p>
-                            <div style="margin-top: 15px; font-size: 0.9em;">
-                                <div>✓ View analytics</div>
-                                <div>✓ Manage menu</div>
-                                <div>✓ Control staff</div>
-                                <div>✓ Track revenue</div>
-                            </div>
-                        </div>
-                        <div class="role-card vip">
-                            <div class="role-icon">⭐</div>
-                            <h3>VIP Customer</h3>
-                            <p style="margin-top: 10px; opacity: 0.9;">Priority service, special offers, faster bubbles, premium features</p>
-                            <div style="margin-top: 15px; font-size: 0.9em;">
-                                <div>✓ Priority bubbles</div>
-                                <div>✓ Special offers</div>
-                                <div>✓ Faster service</div>
-                                <div>✓ Premium features</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2: Menu -->
-                <div id="step-menu" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">📋 QUANTUM MENU</div>
-                            <div class="content-subtitle">Select items to add to your bubble</div>
-                        </div>
-                        <div style="color: var(--cyan);">
-                            <div id="cartCount" style="font-size: 1.2em;">🛒 0 items</div>
-                        </div>
-                    </div>
-
-                    <div class="menu-grid" id="menuGrid">
-                        <!-- Menu items will be loaded here -->
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="showStep('order')">
-                            🛒 View Cart & Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Order -->
-                <div id="step-order" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">🛒 PLACE ORDER</div>
-                            <div class="content-subtitle">Review and confirm your order</div>
-                        </div>
-                    </div>
-
-                    <div id="orderItems" style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; margin: 20px 0;">
-                        <!-- Order items will appear here -->
-                        <div style="text-align: center; color: var(--text-light); padding: 40px;">
-                            <div style="font-size: 3em; margin-bottom: 20px;">🫧</div>
-                            <h3>Your bubble is empty</h3>
-                            <p>Add items from the menu to start ordering!</p>
-                        </div>
-                    </div>
-
-                    <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 15px; margin: 30px 0;">
-                        <h3 style="color: var(--green); margin-bottom: 15px;">💰 ORDER TOTAL</h3>
-                        <div style="display: flex; justify-content: space-between; font-size: 1.2em; margin: 10px 0;">
-                            <span>Subtotal:</span>
-                            <span id="subtotal">$0.00</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin: 10px 0;">
-                            <span>Tax (10%):</span>
-                            <span id="tax">$0.00</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 1.5em; font-weight: bold; margin: 20px 0; padding-top: 20px; border-top: 2px solid rgba(0, 255, 136, 0.3);">
-                            <span>TOTAL:</span>
-                            <span id="total" style="color: var(--green);">$0.00</span>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="placeOrder()">
-                            ✅ PLACE ORDER
-                        </button>
-                        <button class="btn" onclick="showStep('menu')" style="background: rgba(255,255,255,0.1); color: var(--text);">
-                            ← Back to Menu
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Galaxy -->
-                <div id="step-galaxy" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">🌌 BUBBLE GALAXY</div>
-                            <div class="content-subtitle">Real-time view of all orders</div>
-                        </div>
-                        <div>
-                            <button class="btn" onclick="generateBubbles()" style="background: rgba(0,255,255,0.1); color: var(--cyan);">
-                                🔄 Refresh
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bubble-galaxy" id="bubbleGalaxy">
-                        <!-- Bubbles will be generated here -->
-                    </div>
-
-                    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 15px; height: 15px; background: var(--green); border-radius: 50%;"></div>
-                            <span>Paid</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 15px; height: 15px; background: var(--blue); border-radius: 50%;"></div>
-                            <span>Preparing</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 15px; height: 15px; background: var(--red); border-radius: 50%;"></div>
-                            <span>Unpaid</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 15px; height: 15px; background: var(--cyan); border-radius: 50%;"></div>
-                            <span>New Order</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 5: Group -->
-                <div id="step-group" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">👥 GROUP ORDERS</div>
-                            <div class="content-subtitle">Order together with friends</div>
-                        </div>
-                    </div>
-
-                    <div style="background: rgba(0,136,255,0.1); padding: 25px; border-radius: 15px; margin: 30px 0;">
-                        <h3 style="color: var(--blue); margin-bottom: 20px;">🫧 Your Bubble Group</h3>
-                        <div id="groupMembers" style="display: flex; gap: 15px; flex-wrap: wrap;">
-                            <!-- Group members will appear here -->
-                        </div>
-                        
-                        <div style="margin-top: 30px;">
-                            <button class="btn" onclick="addGroupMember()" style="background: rgba(0,255,255,0.1); color: var(--cyan);">
-                                👥 Add Friend to Group
-                            </button>
-                        </div>
-                    </div>
-
-                    <div style="background: rgba(0,255,136,0.1); padding: 25px; border-radius: 15px;">
-                        <h3 style="color: var(--green); margin-bottom: 20px;">💰 Bill Splitting</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <button class="btn" onclick="splitBill('equal')" style="background: rgba(255,255,255,0.05);">
-                                🤝 Split Equally
-                            </button>
-                            <button class="btn" onclick="splitBill('item')" style="background: rgba(255,255,255,0.05);">
-                                📝 By Items
-                            </button>
-                            <button class="btn" onclick="splitBill('custom')" style="background: rgba(255,255,255,0.05);">
-                                ⚙️ Custom Split
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 6: Payment -->
-                <div id="step-payment" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">💳 PAYMENT SPLIT</div>
-                            <div class="content-subtitle">Multiple payment options</div>
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
-                        <div style="background: rgba(0,136,255,0.1); padding: 25px; border-radius: 15px; text-align: center; cursor: pointer;" onclick="selectPayment('telegram')">
-                            <div style="font-size: 2.5em;">🤖</div>
-                            <h3>Telegram Stars</h3>
-                            <p style="margin-top: 10px; font-size: 0.9em;">Pay with Telegram's currency</p>
-                        </div>
-                        <div style="background: rgba(0,255,136,0.1); padding: 25px; border-radius: 15px; text-align: center; cursor: pointer;" onclick="selectPayment('card')">
-                            <div style="font-size: 2.5em;">💳</div>
-                            <h3>Credit Card</h3>
-                            <p style="margin-top: 10px; font-size: 0.9em;">Secure card payment</p>
-                        </div>
-                        <div style="background: rgba(170,0,255,0.1); padding: 25px; border-radius: 15px; text-align: center; cursor: pointer;" onclick="selectPayment('cash')">
-                            <div style="font-size: 2.5em;">💵</div>
-                            <h3>Cash</h3>
-                            <p style="margin-top: 10px; font-size: 0.9em;">Pay at counter</p>
-                        </div>
-                        <div style="background: rgba(255,0,85,0.1); padding: 25px; border-radius: 15px; text-align: center; cursor: pointer;" onclick="selectPayment('split')">
-                            <div style="font-size: 2.5em;">👥</div>
-                            <h3>Split Bill</h3>
-                            <p style="margin-top: 10px; font-size: 0.9em;">Share with group</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 7: Tracking -->
-                <div id="step-tracking" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">📊 ORDER TRACKING</div>
-                            <div class="content-subtitle">Real-time order status</div>
-                        </div>
-                    </div>
-
-                    <div style="background: rgba(0,255,255,0.1); padding: 30px; border-radius: 15px; margin: 30px 0;">
-                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
-                            <div class="bubble" style="position: static; width: 100px; height: 100px; font-size: 1.5em; background: radial-gradient(circle at 30% 30%, var(--cyan), transparent); color: var(--cyan);">
-                                A1
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; justify-content: space-between; position: relative; margin: 40px 0;">
-                            <div style="text-align: center;">
-                                <div style="width: 40px; height: 40px; background: var(--green); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">✅</div>
-                                <div>Ordered</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="width: 40px; height: 40px; background: var(--blue); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">👨‍🍳</div>
-                                <div>Preparing</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="width: 40px; height: 40px; background: var(--text-light); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">⏳</div>
-                                <div>Ready</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="width: 40px; height: 40px; background: var(--text-light); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">🚚</div>
-                                <div>Delivered</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 8: Telegram -->
-                <div id="step-telegram" class="step-content" style="display: none;">
-                    <div class="content-header">
-                        <div>
-                            <div class="content-title">🤖 TELEGRAM SETUP</div>
-                            <div class="content-subtitle">Connect to Telegram Bot</div>
-                        </div>
-                    </div>
-
-                    <div class="telegram-info">
-                        <h3 style="color: var(--blue); margin-bottom: 20px;">✅ Your Setup is Complete!</h3>
-                        
-                        <div style="margin: 20px 0;">
-                            <div><strong>🌐 Your Website:</strong></div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 10px 0; font-family: monospace;">
-                                https://falah157.github.io/bubbleflow-telegram/
-                            </div>
-                        </div>
-                        
-                        <div style="margin: 20px 0;">
-                            <div><strong>🤖 Your Telegram Bot:</strong></div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 10px 0; font-family: monospace;">
-                                @BubbleFlowDemo_bot
-                            </div>
-                        </div>
-                        
-                        <div style="margin: 30px 0;">
-                            <h4 style="color: var(--cyan); margin-bottom: 15px;">📱 How to Use:</h4>
-                            <div style="background: rgba(0,255,255,0.05); padding: 20px; border-radius: 10px;">
-                                1. Share bot link: <strong>https://t.me/BubbleFlowDemo_bot</strong><br>
-                                2. Users click "Open App" in bot bio<br>
-                                3. They see your BubbleFlow website<br>
-                                4. They order with the bubble system!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Footer with Islamic Date -->
+        <footer class="footer">
+            <div class="hijri-date" id="hijri-date">Hijri Date: Loading...</div>
+            <p class="dua">رَبِّ زِدْنِي عِلْمًا<br>"My Lord, increase me in knowledge." (Quran 20:114)</p>
+            <p class="app-info">Kanditheemu Project Assistant v1.0</p>
+        </footer>
     </div>
 
-    <script>
-        // State
-        const state = {
-            cart: {},
-            menuItems: [
-                { id: 1, name: "Quantum Coffee", price: 4.50, category: "coffee" },
-                { id: 2, name: "Cyber Latte", price: 5.00, category: "coffee" },
-                { id: 3, name: "Neon Tea", price: 3.50, category: "tea" },
-                { id: 4, name: "Data Sandwich", price: 8.50, category: "food" },
-                { id: 5, name: "Byte Burger", price: 9.50, category: "food" },
-                { id: 6, name: "Glow Cake", price: 6.50, category: "dessert" }
-            ],
-            groupMembers: ['A1'],
-            bubbleCode: 'A1'
-        };
-
-        // Telegram Web App
-        const tg = window.Telegram?.WebApp;
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            if (tg) {
-                tg.ready();
-                tg.expand();
-                console.log('Telegram Web App initialized');
-                
-                // Generate bubble code from Telegram ID
-                const user = tg.initDataUnsafe?.user;
-                if (user) {
-                    state.bubbleCode = 'T' + user.id.toString().slice(-3);
-                }
-            }
-            
-            showStep('dashboard');
-            loadMenu();
-            generateBubbles();
-            updateGroupDisplay();
-        });
-
-        // Navigation
-        function showStep(stepId) {
-            // Hide all steps
-            document.querySelectorAll('.step-content').forEach(step => {
-                step.style.display = 'none';
-            });
-            
-            // Remove active class from all nav items
-            document.querySelectorAll('.flow-step').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Show selected step
-            document.getElementById(`step-${stepId}`).style.display = 'block';
-            
-            // Add active class to clicked nav item
-            event.currentTarget.classList.add('active');
-            
-            // Update cart count
-            updateCartCount();
-        }
-
-        // Load Menu
-        function loadMenu() {
-            const container = document.getElementById('menuGrid');
-            container.innerHTML = '';
-            
-            state.menuItems.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'menu-item';
-                menuItem.innerHTML = `
-                    <div class="item-name">${item.name}</div>
-                    <div style="color: var(--text-light); font-size: 0.9em; margin-bottom: 15px;">${item.category}</div>
-                    <div class="item-price">$${item.price.toFixed(2)}</div>
-                    <div class="order-controls">
-                        <button class="qty-btn" onclick="updateCart(${item.id}, -1)">-</button>
-                        <span class="qty-display" id="qty-${item.id}">0</span>
-                        <button class="qty-btn" onclick="updateCart(${item.id}, 1)">+</button>
-                    </div>
-                `;
-                container.appendChild(menuItem);
-            });
-        }
-
-        // Cart Functions
-        function updateCart(itemId, change) {
-            if (!state.cart[itemId]) state.cart[itemId] = 0;
-            state.cart[itemId] += change;
-            if (state.cart[itemId] < 0) state.cart[itemId] = 0;
-            
-            // Update display
-            const qtyDisplay = document.getElementById(`qty-${itemId}`);
-            if (qtyDisplay) {
-                qtyDisplay.textContent = state.cart[itemId];
-            }
-            
-            updateCartCount();
-            updateOrderDisplay();
-        }
-
-        function updateCartCount() {
-            let totalItems = 0;
-            for (const itemId in state.cart) {
-                totalItems += state.cart[itemId];
-            }
-            document.getElementById('cartCount').textContent = `🛒 ${totalItems} items`;
-        }
-
-        function updateOrderDisplay() {
-            const container = document.getElementById('orderItems');
-            let subtotal = 0;
-            
-            container.innerHTML = '';
-            
-            for (const itemId in state.cart) {
-                const qty = state.cart[itemId];
-                if (qty > 0) {
-                    const item = state.menuItems.find(i => i.id == itemId);
-                    if (item) {
-                        const itemTotal = item.price * qty;
-                        subtotal += itemTotal;
-                        
-                        const orderItem = document.createElement('div');
-                        orderItem.style.cssText = 'display: flex; justify-content: space-between; padding: 15px; background: rgba(255,255,255,0.03); margin: 10px 0; border-radius: 10px;';
-                        orderItem.innerHTML = `
-                            <div>
-                                <div style="font-weight: bold;">${item.name}</div>
-                                <div style="font-size: 0.9em; color: var(--text-light);">${qty} × $${item.price.toFixed(2)}</div>
-                            </div>
-                            <div style="font-weight: bold; color: var(--green);">$${itemTotal.toFixed(2)}</div>
-                        `;
-                        container.appendChild(orderItem);
-                    }
-                }
-            }
-            
-            if (container.children.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; color: var(--text-light); padding: 40px;">
-                        <div style="font-size: 3em; margin-bottom: 20px;">🫧</div>
-                        <h3>Your bubble is empty</h3>
-                        <p>Add items from the menu to start ordering!</p>
-                    </div>
-                `;
-            }
-            
-            // Update totals
-            const tax = subtotal * 0.10;
-            const total = subtotal + tax;
-            
-            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
-        }
-
-        // Generate Bubbles
-        function generateBubbles() {
-            const container = document.getElementById('bubbleGalaxy');
-            container.innerHTML = '';
-            
-            const bubbles = [
-                { id: 'A1', status: 'paid', x: 20, y: 30 },
-                { id: 'A2', status: 'working', x: 50, y: 60 },
-                { id: 'A3', status: 'unpaid', x: 80, y: 40 },
-                { id: 'B1', status: 'new', x: 30, y: 70 },
-                { id: 'B2', status: 'paid', x: 70, y: 20 },
-                { id: 'C1', status: 'working', x: 40, y: 50 },
-                { id: 'VIP1', status: 'vip', x: 60, y: 80 }
-            ];
-            
-            bubbles.forEach(bubble => {
-                const bubbleEl = document.createElement('div');
-                bubbleEl.className = `bubble ${bubble.status}`;
-                bubbleEl.textContent = bubble.id;
-                bubbleEl.title = `Bubble ${bubble.id} - ${bubble.status}`;
-                bubbleEl.style.left = `${bubble.x}%`;
-                bubbleEl.style.top = `${bubble.y}%`;
-                bubbleEl.style.animationDelay = `${Math.random() * 2}s`;
-                
-                bubbleEl.addEventListener('click', () => {
-                    alert(`Bubble ${bubble.id}\nStatus: ${bubble.status.toUpperCase()}\n\nClick to track this order!`);
-                });
-                
-                container.appendChild(bubbleEl);
-            });
-        }
-
-        // Group Functions
-        function updateGroupDisplay() {
-            const container = document.getElementById('groupMembers');
-            container.innerHTML = '';
-            
-            state.groupMembers.forEach(member => {
-                const memberEl = document.createElement('div');
-                memberEl.style.cssText = 'background: rgba(0,255,255,0.1); padding: 15px; border-radius: 10px; min-width: 80px; text-align: center;';
-                memberEl.innerHTML = `
-                    <div style="font-size: 1.5em; margin-bottom: 5px;">🫧</div>
-                    <div style="font-weight: bold;">${member}</div>
-                    <div style="font-size: 0.8em; color: var(--text-light);">${member === state.bubbleCode ? 'You' : 'Friend'}</div>
-                `;
-                container.appendChild(memberEl);
-            });
-        }
-
-        function addGroupMember() {
-            const friendCode = prompt('Enter friend\'s bubble code (e.g., A2, B3):');
-            if (friendCode && !state.groupMembers.includes(friendCode.toUpperCase())) {
-                state.groupMembers.push(friendCode.toUpperCase());
-                updateGroupDisplay();
-                alert(`Added ${friendCode.toUpperCase()} to your group!`);
-            }
-        }
-
-        // Order Functions
-        function placeOrder() {
-            let totalItems = 0;
-            for (const itemId in state.cart) {
-                totalItems += state.cart[itemId];
-            }
-            
-            if (totalItems === 0) {
-                alert('Please add items to your cart first!');
-                return;
-            }
-            
-            const total = parseFloat(document.getElementById('total').textContent.replace('$', ''));
-            
-            if (confirm(`Place order for $${total.toFixed(2)}?\n\nYour bubble ${state.bubbleCode} will start preparing!`)) {
-                alert(`🎉 Order placed successfully!\n\nBubble ${state.bubbleCode} is now preparing your order.\n\nTotal: $${total.toFixed(2)}`);
-                
-                // Clear cart
-                state.cart = {};
-                updateCartCount();
-                updateOrderDisplay();
-                loadMenu(); // Reset quantities
-                
-                // Show tracking step
-                showStep('tracking');
-            }
-        }
-
-        function splitBill(method) {
-            const methods = {
-                equal: 'Split bill equally among all group members',
-                item: 'Each person pays for their own items',
-                custom: 'Set custom percentages for each person'
-            };
-            alert(`Selected: ${methods[method]}\n\nIn full app, this would calculate and send payment requests.`);
-        }
-
-        function selectPayment(method) {
-            const methods = {
-                telegram: 'Telegram Stars - Pay with Telegram currency',
-                card: 'Credit Card - Secure online payment',
-                cash: 'Cash - Pay at the counter',
-                split: 'Split Bill - Share with your group'
-            };
-            alert(`Selected: ${methods[method]}\n\nPayment screen would open for $${document.getElementById('total').textContent}`);
-        }
-
-        // Initialize
-        showStep('dashboard');
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(to right, #159895, #1a5f7a);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.project-info h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.project-info h1 i {
+    color: #57C5B6;
+}
+
+#current-date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.location {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Sections */
+section {
+    padding: 20px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a5f7a;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Quran Section */
+.verse-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(26, 95, 122, 0.1);
+    text-align: center;
+    border-left: 5px solid #57C5B6;
+}
+
+.verse-arabic {
+    font-size: 1.8rem;
+    font-family: 'Traditional Arabic', 'Scheherazade', serif;
+    color: #1a5f7a;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.verse-translation {
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.verse-reference {
+    font-size: 0.9rem;
+    color: #159895;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Actions Grid */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.action-btn {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn i {
+    font-size: 1.8rem;
+    color: #1a5f7a;
+}
+
+.action-btn span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Forms */
+.form-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a5f7a;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #57C5B6;
+    box-shadow: 0 0 0 3px rgba(87, 197, 182, 0.2);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Buttons */
+.btn-primary {
+    flex: 1;
+    background: linear-gradient(to right, #159895, #1a5f7a);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    background: white;
+    color: #1a5f7a;
+    border: 2px solid #1a5f7a;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #1a5f7a;
+    color: white;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #f1f1f1;
+    color: #666;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+/* Reports List */
+.reports-list {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    min-height: 100px;
+    margin-bottom: 15px;
+}
+
+.report-item {
+    background: #f8f9fa;
+    border-left: 4px solid #57C5B6;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.report-item .report-type {
+    font-weight: bold;
+    color: #1a5f7a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px 20px;
+    color: #888;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #f1f1f1;
+    color: #555;
+}
+
+.hijri-date {
+    font-weight: 600;
+    color: #1a5f7a;
+    margin-bottom: 10px;
+}
+
+.dua {
+    font-size: 1rem;
+    font-style: italic;
+    margin: 15px 0;
+    color: #159895;
+    line-height: 1.5;
+}
+
+.app-info {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 15px;
+    }
+    
+    .header, section {
+        padding: 15px;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-card {
+        margin: 10px;
+    }
+}
+// Telegram WebApp Integration
+const tg = window.Telegram.WebApp;
+
+// Initialize Telegram WebApp
+tg.expand();
+tg.setHeaderColor('#1a5f7a');
+tg.setBackgroundColor('#f8f9fa');
+
+// State
+let today = new Date();
+let dailyEntries = [];
+let verses = [];
+
+// DOM Elements
+const verseArabic = document.getElementById('verse-arabic');
+const verseTranslation = document.getElementById('verse-translation');
+const verseReference = document.getElementById('verse-reference');
+const currentDateElement = document.getElementById('current-date');
+const hijriDateElement = document.getElementById('hijri-date');
+const reportsList = document.getElementById('reports-list');
+
+// Initialize Date
+function updateDate() {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    currentDateElement.textContent = today.toLocaleDateString('en-US', options);
+    
+    // Simple Hijri date (approximation - for real implementation use a library)
+    const hijri = new Intl.DateTimeFormat('en-US-u-ca-islamic', {day: 'numeric', month: 'long', year: 'numeric'}).format(today);
+    hijriDateElement.textContent = `Hijri: ${hijri}`;
+}
+
+// Load Quran Verses
+async function loadVerses() {
+    try {
+        const response = await fetch('verses.json');
+        const data = await response.json();
+        verses = data.verses;
+        loadRandomVerse();
+    } catch (error) {
+        console.error('Error loading verses:', error);
+        // Fallback verses
+        verses = [
+            {
+                arabic: "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ",
+                translation: "And say, 'Do deeds, for Allah will see your deeds.'",
+                reference: "Quran 9:105",
+                theme: "work"
+            }
+        ];
+        loadRandomVerse();
+    }
+}
+
+// Show Random Verse
+function loadRandomVerse() {
+    if (verses.length === 0) return;
+    
+    const randomIndex = Math.floor(Math.random() * verses.length);
+    const verse = verses[randomIndex];
+    
+    verseArabic.textContent = verse.arabic;
+    verseTranslation.textContent = `"${verse.translation}"`;
+    verseReference.textContent = verse.reference;
+    
+    // Store today's verse in localStorage
+    localStorage.setItem('dailyVerse', JSON.stringify({
+        verse: verse,
+        date: today.toDateString()
+    }));
+}
+
+// Form Handling
+function openForm(formType) {
+    // Hide all forms first
+    document.querySelectorAll('.form-card').forEach(form => {
+        form.style.display = 'none';
+    });
+    
+    // Show selected form
+    document.getElementById(`${formType}-form`).style.display = 'block';
+    
+    // Scroll to form
+    document.getElementById(`${formType}-form`).scrollIntoView({ behavior: 'smooth' });
+}
+
+function closeForm(formType) {
+    document.getElementById(`${formType}-form`).style.display = 'none';
+}
+
+// Save Functions
+function saveProgress() {
+    const workDone = document.getElementById('work-done').value;
+    const workerCount = document.getElementById('worker-count').value;
+    const weather = document.getElementById('weather').value;
+    
+    if (!workDone.trim()) {
+        alert('Please describe work done today');
+        return;
+    }
+    
+    const entry = {
+        id: Date.now(),
+        type: 'progress',
+        workDone,
+        workerCount: workerCount || 'Not specified',
+        weather,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    saveEntry(entry);
+    document.getElementById('work-done').value = '';
+    document.getElementById('worker-count').value = '';
+    closeForm('progress');
+}
+
+function saveMaterial() {
+    const materialType = document.getElementById('material-type').value;
+    const quantity = document.getElementById('material-qty').value;
+    const supplier = document.getElementById('supplier').value;
+    
+    if (!quantity || !supplier.trim()) {
+        alert('Please fill quantity and supplier');
+        return;
+    }
+    
+    const entry = {
+        id: Date.now(),
+        type: 'material',
+        materialType,
+        quantity,
+        supplier,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    saveEntry(entry);
+    document.getElementById('material-qty').value = '';
+    document.getElementById('supplier').value = '';
+    closeForm('materials');
+}
+
+function saveIssue() {
+    const issueType = document.getElementById('issue-type').value;
+    const description = document.getElementById('issue-desc').value;
+    const urgency = document.getElementById('urgency').value;
+    
+    if (!description.trim()) {
+        alert('Please describe the issue');
+        return;
+    }
+    
+    const entry = {
+        id: Date.now(),
+        type: 'issue',
+        issueType,
+        description,
+        urgency,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    saveEntry(entry);
+    document.getElementById('issue-desc').value = '';
+    closeForm('issues');
+}
+
+// Save Entry to Local Storage
+function saveEntry(entry) {
+    // Load existing entries for today
+    let entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
+    
+    // If entries are from a different day, clear them
+    const todayStr = today.toDateString();
+    const lastEntryDate = localStorage.getItem('lastEntryDate');
+    if (lastEntryDate !== todayStr) {
+        entries = [];
+    }
+    
+    entries.push(entry);
+    localStorage.setItem('dailyEntries', JSON.stringify(entries));
+    localStorage.setItem('lastEntryDate', todayStr);
+    
+    // Update UI
+    updateReportsList();
+    
+    // Show confirmation
+    tg.showPopup({
+        title: '✅ Saved Successfully',
+        message: 'Your entry has been saved locally.',
+        buttons: [{ type: 'ok' }]
+    });
+}
+
+// Update Reports List UI
+function updateReportsList() {
+    const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
+    const todayStr = today.toDateString();
+    const lastEntryDate = localStorage.getItem('lastEntryDate');
+    
+    // Clear if not today
+    if (lastEntryDate !== todayStr) {
+        reportsList.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-clipboard"></i>
+                <p>No entries yet today. Start logging your work!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    if (entries.length === 0) {
+        reportsList.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-clipboard"></i>
+                <p>No entries yet today. Start logging your work!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    entries.forEach(entry => {
+        let icon, title, details;
+        
+        switch(entry.type) {
+            case 'progress':
+                icon = 'fas fa-hard-hat';
+                title = 'Site Progress';
+                details = `${entry.workDone.substring(0, 60)}... • Workers: ${entry.workerCount} • ${entry.weather}`;
+                break;
+            case 'material':
+                icon = 'fas fa-truck-loading';
+                title = 'Material Delivery';
+                details = `${entry.materialType}: ${entry.quantity} units • From: ${entry.supplier}`;
+                break;
+            case 'issue':
+                icon = 'fas fa-exclamation-triangle';
+                title = 'Issue Reported';
+                details = `${entry.issueType}: ${entry.description.substring(0, 60)}... • Urgency: ${entry.urgency}`;
+                break;
+        }
+        
+        html += `
+            <div class="report-item">
+                <div class="report-type">
+                    <i class="${icon}"></i> ${title}
+                </div>
+                <div>${details}</div>
+                <div class="report-time">${entry.timestamp}</div>
+            </div>
+        `;
+    });
+    
+    reportsList.innerHTML = html;
+}
+
+// Open Camera (Telegram Mini App feature)
+function openCamera() {
+    tg.showPopup({
+        title: 'Camera Access',
+        message: 'In a real implementation, this would open camera for site photos.',
+        buttons: [{ type: 'ok' }]
+    });
+    
+    // For real camera access in Telegram Mini App:
+    // tg.requestCameraAccess().then(granted => {
+    //     if (granted) {
+    //         // Use Telegram camera or file picker
+    //         tg.showPhotoPicker({}, photos => {
+    //             // Handle selected photos
+    //         });
+    //     }
+    // });
+}
+
+// View Weekly Summary
+function viewWeeklySummary() {
+    const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
+    
+    if (entries.length === 0) {
+        tg.showPopup({
+            title: 'No Data',
+            message: 'No entries found for this week.',
+            buttons: [{ type: 'ok' }]
+        });
+        return;
+    }
+    
+    // Simple summary
+    const progressCount = entries.filter(e => e.type === 'progress').length;
+    const materialCount = entries.filter(e => e.type === 'material').length;
+    const issueCount = entries.filter(e => e.type === 'issue').length;
+    
+    const summary = `
+📊 Weekly Summary (Last 7 days):
+
+✅ Site Progress Logs: ${progressCount}
+🧱 Material Deliveries: ${materialCount}
+⚠️ Issues Reported: ${issueCount}
+
+Total Entries: ${entries.length}
+    `.trim();
+    
+    tg.showPopup({
+        title: 'Weekly Summary',
+        message: summary,
+        buttons: [{ type: 'ok' }]
+    });
+}
+
+// Export Data (for sending to supervisor)
+function exportData() {
+    const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
+    const dataStr = JSON.stringify(entries, null, 2);
+    
+    tg.showPopup({
+        title: 'Export Data',
+        message: 'Data exported. In real app, this would send to supervisor or save as file.',
+        buttons: [{ type: 'ok' }]
+    });
+    
+    // For real implementation:
+    // tg.sendData(dataStr); // Sends data to bot
+}
+
+// Initialize App
+function initApp() {
+    updateDate();
+    loadVerses();
+    updateReportsList();
+    
+    // Check for saved verse for today
+    const savedVerse = JSON.parse(localStorage.getItem('dailyVerse') || 'null');
+    if (savedVerse && savedVerse.date === today.toDateString()) {
+        verseArabic.textContent = savedVerse.verse.arabic;
+        verseTranslation.textContent = `"${savedVerse.verse.translation}"`;
+        verseReference.textContent = savedVerse.verse.reference;
+    }
+    
+    // Telegram Main Button (for exporting)
+    tg.MainButton.setText('📤 Export Today\'s Report');
+    tg.MainButton.onClick(exportData);
+    tg.MainButton.show();
+}
+
+// Start App
+document.addEventListener('DOMContentLoaded', initApp);
+
+// Optional: Auto-refresh verse at Fajr time (simplified)
+function refreshAtFajr() {
+    const now = new Date();
+    const hours = now.getHours();
+    
+    // If between 4 AM and 5 AM (approximate Fajr), refresh verse
+    if (hours >= 4 && hours < 5) {
+        const lastRefresh = localStorage.getItem('lastVerseRefresh');
+        const todayDate = now.toDateString();
+        
+        if (lastRefresh !== todayDate) {
+            loadRandomVerse();
+            localStorage.setItem('lastVerseRefresh', todayDate);
+        }
+    }
+}
+
+// Check every hour
+setInterval(refreshAtFajr, 60 * 60 * 1000);
+        
