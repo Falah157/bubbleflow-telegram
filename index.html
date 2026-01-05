@@ -1,42 +1,4 @@
-{
-  "verses": [
-    {
-      "id": 1,
-      "arabic": "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ",
-      "translation": "And say, 'Do [good] deeds, for Allah will see your deeds, and His Messenger and the believers as well.'",
-      "reference": "Quran 9:105",
-      "theme": "work"
-    },
-    {
-      "id": 2,
-      "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
-      "translation": "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
-      "reference": "Quran 13:11",
-      "theme": "change"
-    },
-    {
-      "id": 3,
-      "arabic": "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ",
-      "translation": "And cooperate in righteousness and piety, but do not cooperate in sin and aggression.",
-      "reference": "Quran 5:2",
-      "theme": "cooperation"
-    },
-    {
-      "id": 4,
-      "arabic": "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ",
-      "translation": "And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah.",
-      "reference": "Quran 62:10",
-      "theme": "sustenance"
-    },
-    {
-      "id": 5,
-      "arabic": "وَاللَّهُ فَضَّلَ بَعْضَكُمْ عَلَى بَعْضٍ فِي الرِّزْقِ",
-      "translation": "And Allah has favored some of you over others in provision.",
-      "reference": "Quran 16:71",
-      "theme": "provision"
-    }
-  ]
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,7 +10,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header with Date & Project Info -->
         <header class="header">
             <div class="project-info">
                 <h1><i class="fas fa-road"></i> Kanditheemu Road Project</h1>
@@ -57,7 +18,6 @@
             </div>
         </header>
 
-        <!-- Daily Quran Reminder Section -->
         <section class="quran-section" id="quran-section">
             <div class="section-title">
                 <i class="fas fa-quran"></i> Today's Quran Reminder
@@ -74,7 +34,6 @@
             </div>
         </section>
 
-        <!-- Quick Actions -->
         <section class="actions-section">
             <div class="section-title">
                 <i class="fas fa-tasks"></i> Daily Work Log
@@ -99,9 +58,7 @@
             </div>
         </section>
 
-        <!-- Forms (Hidden by default) -->
         <div id="forms-container">
-            <!-- Site Progress Form -->
             <div class="form-card" id="progress-form" style="display: none;">
                 <h3><i class="fas fa-hard-hat"></i> Daily Site Progress</h3>
                 <div class="form-group">
@@ -127,7 +84,6 @@
                 </div>
             </div>
 
-            <!-- Material Delivery Form -->
             <div class="form-card" id="materials-form" style="display: none;">
                 <h3><i class="fas fa-truck-loading"></i> Material Delivery</h3>
                 <div class="form-group">
@@ -155,7 +111,6 @@
                 </div>
             </div>
 
-            <!-- Issue Report Form -->
             <div class="form-card" id="issues-form" style="display: none;">
                 <h3><i class="fas fa-exclamation-triangle"></i> Report Issue</h3>
                 <div class="form-group">
@@ -189,7 +144,6 @@
             </div>
         </div>
 
-        <!-- Reports Summary -->
         <section class="reports-section">
             <div class="section-title">
                 <i class="fas fa-clipboard-list"></i> Today's Entries
@@ -203,20 +157,29 @@
             <button class="btn-secondary" onclick="viewWeeklySummary()">
                 <i class="fas fa-chart-bar"></i> View Weekly Summary
             </button>
+            <button class="btn-secondary" onclick="clearTodayData()" style="margin-top: 10px; background: #f8d7da; border-color: #f5c6cb; color: #721c24;">
+                <i class="fas fa-trash"></i> Clear Today's Data
+            </button>
         </section>
 
-        <!-- Footer with Islamic Date -->
         <footer class="footer">
             <div class="hijri-date" id="hijri-date">Hijri Date: Loading...</div>
             <p class="dua">رَبِّ زِدْنِي عِلْمًا<br>"My Lord, increase me in knowledge." (Quran 20:114)</p>
-            <p class="app-info">Kanditheemu Project Assistant v1.0</p>
+            <div class="export-buttons">
+                <button class="btn-export" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+                <button class="btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+            </div>
+            <p class="app-info">Kanditheemu Project Assistant v1.0 • Made for V from Kanditheemu</p>
         </footer>
     </div>
 
     <script src="app.js"></script>
 </body>
 </html>
-/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
@@ -240,7 +203,6 @@ body {
     overflow: hidden;
 }
 
-/* Header */
 .header {
     background: linear-gradient(to right, #159895, #1a5f7a);
     color: white;
@@ -275,7 +237,6 @@ body {
     gap: 5px;
 }
 
-/* Sections */
 section {
     padding: 20px;
     border-bottom: 1px solid #eaeaea;
@@ -291,7 +252,6 @@ section {
     gap: 10px;
 }
 
-/* Quran Section */
 .verse-card {
     background: white;
     border-radius: 15px;
@@ -324,7 +284,6 @@ section {
     margin-bottom: 15px;
 }
 
-/* Actions Grid */
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -362,7 +321,6 @@ section {
     color: #333;
 }
 
-/* Forms */
 .form-card {
     background: white;
     border-radius: 15px;
@@ -418,7 +376,6 @@ section {
     margin-top: 25px;
 }
 
-/* Buttons */
 .btn-primary {
     flex: 1;
     background: linear-gradient(to right, #159895, #1a5f7a);
@@ -476,7 +433,6 @@ section {
     background: #e0e0e0;
 }
 
-/* Reports List */
 .reports-list {
     background: white;
     border-radius: 15px;
@@ -503,6 +459,13 @@ section {
     margin-bottom: 5px;
 }
 
+.report-time {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+    text-align: right;
+}
+
 .empty-state {
     text-align: center;
     padding: 30px 20px;
@@ -515,7 +478,6 @@ section {
     margin-bottom: 15px;
 }
 
-/* Footer */
 .footer {
     padding: 20px;
     text-align: center;
@@ -537,13 +499,41 @@ section {
     line-height: 1.5;
 }
 
+.export-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn-export, .btn-print {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-export {
+    background: #1a5f7a;
+    color: white;
+}
+
+.btn-print {
+    background: #28a745;
+    color: white;
+}
+
 .app-info {
     font-size: 0.8rem;
     color: #888;
     margin-top: 15px;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
     .container {
         border-radius: 15px;
@@ -560,21 +550,36 @@ section {
     .form-card {
         margin: 10px;
     }
+    
+    .verse-arabic {
+        font-size: 1.5rem;
+    }
 }
-// Telegram WebApp Integration
+
+@media print {
+    .action-btn, .btn-secondary, .export-buttons {
+        display: none !important;
+    }
+    
+    .form-card {
+        display: none !important;
+    }
+    
+    .container {
+        box-shadow: none;
+        max-width: 100%;
+    }
+}
 const tg = window.Telegram.WebApp;
 
-// Initialize Telegram WebApp
 tg.expand();
 tg.setHeaderColor('#1a5f7a');
 tg.setBackgroundColor('#f8f9fa');
 
-// State
 let today = new Date();
 let dailyEntries = [];
 let verses = [];
 
-// DOM Elements
 const verseArabic = document.getElementById('verse-arabic');
 const verseTranslation = document.getElementById('verse-translation');
 const verseReference = document.getElementById('verse-reference');
@@ -582,17 +587,18 @@ const currentDateElement = document.getElementById('current-date');
 const hijriDateElement = document.getElementById('hijri-date');
 const reportsList = document.getElementById('reports-list');
 
-// Initialize Date
 function updateDate() {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     currentDateElement.textContent = today.toLocaleDateString('en-US', options);
     
-    // Simple Hijri date (approximation - for real implementation use a library)
-    const hijri = new Intl.DateTimeFormat('en-US-u-ca-islamic', {day: 'numeric', month: 'long', year: 'numeric'}).format(today);
+    const hijri = new Intl.DateTimeFormat('en-US-u-ca-islamic', {
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric'
+    }).format(today);
     hijriDateElement.textContent = `Hijri: ${hijri}`;
 }
 
-// Load Quran Verses
 async function loadVerses() {
     try {
         const response = await fetch('verses.json');
@@ -600,21 +606,43 @@ async function loadVerses() {
         verses = data.verses;
         loadRandomVerse();
     } catch (error) {
-        console.error('Error loading verses:', error);
-        // Fallback verses
+        console.log('Using default verses');
         verses = [
             {
-                arabic: "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ",
-                translation: "And say, 'Do deeds, for Allah will see your deeds.'",
+                arabic: "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ",
+                translation: "And say, 'Do [good] deeds, for Allah will see your deeds, and His Messenger and the believers as well.'",
                 reference: "Quran 9:105",
                 theme: "work"
+            },
+            {
+                arabic: "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+                translation: "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+                reference: "Quran 13:11",
+                theme: "change"
+            },
+            {
+                arabic: "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ",
+                translation: "And cooperate in righteousness and piety, but do not cooperate in sin and aggression.",
+                reference: "Quran 5:2",
+                theme: "cooperation"
+            },
+            {
+                arabic: "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ",
+                translation: "And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah.",
+                reference: "Quran 62:10",
+                theme: "sustenance"
+            },
+            {
+                arabic: "وَاللَّهُ فَضَّلَ بَعْضَكُمْ عَلَى بَعْضٍ فِي الرِّزْقِ",
+                translation: "And Allah has favored some of you over others in provision.",
+                reference: "Quran 16:71",
+                theme: "provision"
             }
         ];
         loadRandomVerse();
     }
 }
 
-// Show Random Verse
 function loadRandomVerse() {
     if (verses.length === 0) return;
     
@@ -625,24 +653,18 @@ function loadRandomVerse() {
     verseTranslation.textContent = `"${verse.translation}"`;
     verseReference.textContent = verse.reference;
     
-    // Store today's verse in localStorage
     localStorage.setItem('dailyVerse', JSON.stringify({
         verse: verse,
         date: today.toDateString()
     }));
 }
 
-// Form Handling
 function openForm(formType) {
-    // Hide all forms first
     document.querySelectorAll('.form-card').forEach(form => {
         form.style.display = 'none';
     });
     
-    // Show selected form
     document.getElementById(`${formType}-form`).style.display = 'block';
-    
-    // Scroll to form
     document.getElementById(`${formType}-form`).scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -650,7 +672,6 @@ function closeForm(formType) {
     document.getElementById(`${formType}-form`).style.display = 'none';
 }
 
-// Save Functions
 function saveProgress() {
     const workDone = document.getElementById('work-done').value;
     const workerCount = document.getElementById('worker-count').value;
@@ -725,12 +746,9 @@ function saveIssue() {
     closeForm('issues');
 }
 
-// Save Entry to Local Storage
 function saveEntry(entry) {
-    // Load existing entries for today
     let entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
     
-    // If entries are from a different day, clear them
     const todayStr = today.toDateString();
     const lastEntryDate = localStorage.getItem('lastEntryDate');
     if (lastEntryDate !== todayStr) {
@@ -741,24 +759,16 @@ function saveEntry(entry) {
     localStorage.setItem('dailyEntries', JSON.stringify(entries));
     localStorage.setItem('lastEntryDate', todayStr);
     
-    // Update UI
     updateReportsList();
     
-    // Show confirmation
-    tg.showPopup({
-        title: '✅ Saved Successfully',
-        message: 'Your entry has been saved locally.',
-        buttons: [{ type: 'ok' }]
-    });
+    showNotification('✅ Entry Saved', 'Your entry has been saved successfully!');
 }
 
-// Update Reports List UI
 function updateReportsList() {
     const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
     const todayStr = today.toDateString();
     const lastEntryDate = localStorage.getItem('lastEntryDate');
     
-    // Clear if not today
     if (lastEntryDate !== todayStr) {
         reportsList.innerHTML = `
             <div class="empty-state">
@@ -787,7 +797,7 @@ function updateReportsList() {
             case 'progress':
                 icon = 'fas fa-hard-hat';
                 title = 'Site Progress';
-                details = `${entry.workDone.substring(0, 60)}... • Workers: ${entry.workerCount} • ${entry.weather}`;
+                details = `${entry.workDone.substring(0, 80)}...`;
                 break;
             case 'material':
                 icon = 'fas fa-truck-loading';
@@ -797,7 +807,7 @@ function updateReportsList() {
             case 'issue':
                 icon = 'fas fa-exclamation-triangle';
                 title = 'Issue Reported';
-                details = `${entry.issueType}: ${entry.description.substring(0, 60)}... • Urgency: ${entry.urgency}`;
+                details = `${entry.issueType}: ${entry.description.substring(0, 80)}...`;
                 break;
         }
         
@@ -807,7 +817,8 @@ function updateReportsList() {
                     <i class="${icon}"></i> ${title}
                 </div>
                 <div>${details}</div>
-                <div class="report-time">${entry.timestamp}</div>
+                <div class="report-time">${entry.timestamp} • ${entry.type === 'progress' ? 'Workers: ' + entry.workerCount + ' • ' + entry.weather : ''}
+                ${entry.type === 'issue' ? 'Urgency: ' + entry.urgency : ''}</div>
             </div>
         `;
     });
@@ -815,82 +826,110 @@ function updateReportsList() {
     reportsList.innerHTML = html;
 }
 
-// Open Camera (Telegram Mini App feature)
 function openCamera() {
-    tg.showPopup({
-        title: 'Camera Access',
-        message: 'In a real implementation, this would open camera for site photos.',
-        buttons: [{ type: 'ok' }]
-    });
-    
-    // For real camera access in Telegram Mini App:
-    // tg.requestCameraAccess().then(granted => {
-    //     if (granted) {
-    //         // Use Telegram camera or file picker
-    //         tg.showPhotoPicker({}, photos => {
-    //             // Handle selected photos
-    //         });
-    //     }
-    // });
+    if (tg.platform !== 'unknown') {
+        tg.showPopup({
+            title: 'Take Photo',
+            message: 'Camera feature would work in Telegram app. For now, you can describe the site condition in reports.',
+            buttons: [{ type: 'ok', id: 'ok' }]
+        });
+    } else {
+        alert('Camera feature available in Telegram app. Please use the Telegram app for full functionality.');
+    }
 }
 
-// View Weekly Summary
 function viewWeeklySummary() {
     const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
     
     if (entries.length === 0) {
-        tg.showPopup({
-            title: 'No Data',
-            message: 'No entries found for this week.',
-            buttons: [{ type: 'ok' }]
-        });
+        showNotification('📊 No Data', 'No entries found for this week.');
         return;
     }
     
-    // Simple summary
     const progressCount = entries.filter(e => e.type === 'progress').length;
     const materialCount = entries.filter(e => e.type === 'material').length;
     const issueCount = entries.filter(e => e.type === 'issue').length;
     
     const summary = `
-📊 Weekly Summary (Last 7 days):
+📊 WEEKLY SUMMARY
 
 ✅ Site Progress Logs: ${progressCount}
 🧱 Material Deliveries: ${materialCount}
 ⚠️ Issues Reported: ${issueCount}
 
-Total Entries: ${entries.length}
+📅 Total Entries: ${entries.length}
+⏰ Last Entry: ${entries.length > 0 ? entries[entries.length-1].timestamp : 'None'}
     `.trim();
     
-    tg.showPopup({
-        title: 'Weekly Summary',
-        message: summary,
-        buttons: [{ type: 'ok' }]
-    });
+    showNotification('Weekly Summary', summary);
 }
 
-// Export Data (for sending to supervisor)
 function exportData() {
     const entries = JSON.parse(localStorage.getItem('dailyEntries') || '[]');
-    const dataStr = JSON.stringify(entries, null, 2);
+    const todayStr = today.toDateString();
     
-    tg.showPopup({
-        title: 'Export Data',
-        message: 'Data exported. In real app, this would send to supervisor or save as file.',
-        buttons: [{ type: 'ok' }]
+    if (entries.length === 0) {
+        showNotification('No Data', 'No entries to export.');
+        return;
+    }
+    
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "Date,Type,Details,Time\n";
+    
+    entries.forEach(entry => {
+        let details = '';
+        switch(entry.type) {
+            case 'progress':
+                details = `Work: ${entry.workDone.substring(0, 100)} | Workers: ${entry.workerCount} | Weather: ${entry.weather}`;
+                break;
+            case 'material':
+                details = `Material: ${entry.materialType} | Qty: ${entry.quantity} | Supplier: ${entry.supplier}`;
+                break;
+            case 'issue':
+                details = `Issue: ${entry.issueType} | Desc: ${entry.description.substring(0, 100)} | Urgency: ${entry.urgency}`;
+                break;
+        }
+        
+        csvContent += `${todayStr},${entry.type},${details},${entry.timestamp}\n`;
     });
     
-    // For real implementation:
-    // tg.sendData(dataStr); // Sends data to bot
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `kanditheemu_report_${todayStr.replace(/\s+/g, '_')}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    showNotification('📥 Data Exported', 'CSV file downloaded successfully!');
 }
 
-// Initialize App
+function clearTodayData() {
+    if (confirm('Are you sure you want to clear all of today\'s data? This cannot be undone.')) {
+        localStorage.removeItem('dailyEntries');
+        localStorage.setItem('lastEntryDate', today.toDateString());
+        updateReportsList();
+        showNotification('🧹 Data Cleared', 'Today\'s entries have been cleared.');
+    }
+}
+
+function showNotification(title, message) {
+    if (tg.platform !== 'unknown') {
+        tg.showPopup({
+            title: title,
+            message: message,
+            buttons: [{ type: 'ok', id: 'ok' }]
+        });
+    } else {
+        alert(`${title}\n\n${message}`);
+    }
+}
+
 function initApp() {
     updateDate();
     loadVerses();
     updateReportsList();
     
-    // Check for saved verse for today
     const savedVerse = JSON.parse(localStorage.getItem('dailyVerse') || 'null');
     if (savedVerse && savedVerse.date === today.toDateString()) {
         verseArabic.textContent = savedVerse.verse.arabic;
@@ -898,32 +937,170 @@ function initApp() {
         verseReference.textContent = savedVerse.verse.reference;
     }
     
-    // Telegram Main Button (for exporting)
-    tg.MainButton.setText('📤 Export Today\'s Report');
-    tg.MainButton.onClick(exportData);
-    tg.MainButton.show();
+    if (tg.platform !== 'unknown') {
+        tg.MainButton.setText('📤 Export Report');
+        tg.MainButton.onClick(exportData);
+        tg.MainButton.show();
+    }
+    
+    console.log('Kanditheemu Project Assistant v1.0 loaded successfully!');
 }
 
-// Start App
 document.addEventListener('DOMContentLoaded', initApp);
 
-// Optional: Auto-refresh verse at Fajr time (simplified)
-function refreshAtFajr() {
+setInterval(() => {
     const now = new Date();
     const hours = now.getHours();
     
-    // If between 4 AM and 5 AM (approximate Fajr), refresh verse
-    if (hours >= 4 && hours < 5) {
+    if (hours === 5) {
         const lastRefresh = localStorage.getItem('lastVerseRefresh');
         const todayDate = now.toDateString();
         
         if (lastRefresh !== todayDate) {
             loadRandomVerse();
             localStorage.setItem('lastVerseRefresh', todayDate);
+            showNotification('🕌 New Day', 'New Quran verse loaded for today!');
         }
     }
+}, 60 * 60 * 1000);
+{
+  "verses": [
+    {
+      "id": 1,
+      "arabic": "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ",
+      "translation": "And say, 'Do [good] deeds, for Allah will see your deeds, and His Messenger and the believers as well.'",
+      "reference": "Quran 9:105",
+      "theme": "work"
+    },
+    {
+      "id": 2,
+      "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+      "translation": "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+      "reference": "Quran 13:11",
+      "theme": "change"
+    },
+    {
+      "id": 3,
+      "arabic": "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ",
+      "translation": "And cooperate in righteousness and piety, but do not cooperate in sin and aggression.",
+      "reference": "Quran 5:2",
+      "theme": "cooperation"
+    },
+    {
+      "id": 4,
+      "arabic": "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ",
+      "translation": "And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah.",
+      "reference": "Quran 62:10",
+      "theme": "sustenance"
+    },
+    {
+      "id": 5,
+      "arabic": "وَاللَّهُ فَضَّلَ بَعْضَكُمْ عَلَى بَعْضٍ فِي الرِّزْقِ",
+      "translation": "And Allah has favored some of you over others in provision.",
+      "reference": "Quran 16:71",
+      "theme": "provision"
+    },
+    {
+      "id": 6,
+      "arabic": "وَأَنْ لَيْسَ لِلْإِنْسَانِ إِلَّا مَا سَعَى",
+      "translation": "And that there is not for man except that [good] for which he strives.",
+      "reference": "Quran 53:39",
+      "theme": "effort"
+    },
+    {
+      "id": 7,
+      "arabic": "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ لَهُمْ مَغْفِرَةٌ وَأَجْرٌ عَظِيمٌ",
+      "translation": "Allah has promised those who believe and do righteous deeds forgiveness and a great reward.",
+      "reference": "Quran 5:9",
+      "theme": "reward"
+    },
+    {
+      "id": 8,
+      "arabic": "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+      "translation": "Indeed, with hardship comes ease.",
+      "reference": "Quran 94:6",
+      "theme": "patience"
+    },
+    {
+      "id": 9,
+      "arabic": "وَاصْبِرْ فَإِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ",
+      "translation": "And be patient, for indeed, Allah does not allow to be lost the reward of those who do good.",
+      "reference": "Quran 11:115",
+      "theme": "patience"
+    },
+    {
+      "id": 10,
+      "arabic": "رَبِّ زِدْنِي عِلْمًا",
+      "translation": "My Lord, increase me in knowledge.",
+      "reference": "Quran 20:114",
+      "theme": "knowledge"
+    }
+  ]
 }
+# 🏝️ Kanditheemu Project Assistant
 
-// Check every hour
-setInterval(refreshAtFajr, 60 * 60 * 1000);
-        
+A Telegram Mini App designed specifically for **Project Assistants** working on the Kanditheemu Island Road & Infrastructure Development Project in the Maldives.
+
+## ✨ Features
+
+### 📱 Telegram Integration
+- Works inside Telegram Messenger
+- No installation required
+- Optimized for mobile devices
+
+### 🕌 Spiritual Integration
+- Daily Quran reminders
+- Islamic date display
+- Work-themed Quran verses
+- Morning and evening reminders
+
+### 🏗️ Project Management
+- **Site Progress Logging**: Record daily construction work
+- **Material Tracking**: Cement, gravel, pipes, asphalt deliveries
+- **Issue Reporting**: Safety concerns, delays, shortages
+- **Photo Documentation**: Site condition photos (Telegram only)
+
+### 📊 Reporting & Export
+- Daily entries tracking
+- Weekly summaries
+- CSV data export
+- Printable reports
+
+## 🎯 Designed For
+- **V** - Project Assistant from Kanditheemu Island
+- **Age 42** - Simple, intuitive interface
+- **Local context** - Maldives-specific features
+- **Islamic values** - Faith-integrated workflow
+
+## 🚀 Quick Start
+
+### Method 1: Direct Web Access
+1. Download all 5 files
+2. Open `index.html` in any browser
+3. Start using immediately
+
+### Method 2: GitHub Pages (Recommended)
+1. Create GitHub account
+2. Upload all files to a new repository
+3. Enable GitHub Pages in Settings
+4. Access via: `username.github.io/repository-name`
+
+### Method 3: Telegram Bot
+1. Create bot via @BotFather
+2. Set webhook to your hosted files
+3. Share bot link with your team
+
+## 📁 File Structure
+
+## 🛠️ Customization
+
+### Add More Quran Verses
+Edit `verses.json` to add more verses with this format:
+```json
+{
+  "id": 11,
+  "arabic": "آية قرآنية",
+  "translation": "English translation",
+  "reference": "Quran chapter:verse",
+  "theme": "work/patience/etc"
+}
